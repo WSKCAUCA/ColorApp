@@ -1,3 +1,10 @@
 <resources>
     <string name="app_name">ColorApp</string>
+    <string name="jugar">Jugar</string>
+    <string name="punutacion">Putuación</string>
+    <string name="configuracion">Configuración</string>
+    <string name="cantidaddepalabras">Cantidad de palabras</string>
+    <string name="correctas">Palabras correctas</string>
+    <string name="intentosfaltantes">Intentos faltantes</string>
+    <string name="tiempofaltante">Tiempo faltante</string>
 </resources>
