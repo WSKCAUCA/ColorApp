@@ -19,7 +19,9 @@
         <activity android:name=".controllers.Menu" />
         <activity android:name=".controllers.Juego" />
         <activity android:name=".controllers.Configuracion" />
-        <activity android:name=".controllers.Puntuacion"></activity>
+        <activity android:name=".controllers.Puntuacion" />
+        <activity android:name=".controllers.Resumen" />
+        <activity android:name=".controllers.JuegoC"></activity>
     </application>
 
 </manifest>

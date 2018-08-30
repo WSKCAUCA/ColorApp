@@ -1,16 +1,23 @@
 package com.caucaragp.worldskills.colorapp.controllers;
 
+import android.app.Dialog;
+import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.caucaragp.worldskills.colorapp.R;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class Juego extends AppCompatActivity implements View.OnClickListener{
@@ -25,20 +32,23 @@ public class Juego extends AppCompatActivity implements View.OnClickListener{
     ImageButton btnColor1, btnColor2, btnColor3, btnColor4;
     boolean bandera = true;
     boolean bandera1 = true;
-    int ab=0, valorcito, colorR, palabraR;
+    int ab=0, valorcito, colorR, palabraR, pausar;
     public static int correctas, incorrectas;
     int cantidad, intentos;
-    int [] milisegundos = {0,0};
+    int [] milisegundos = {0,30000};
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_juego);
         inizialite();
+        escucharBotones();
         inputList();
         randomizar();
         inputValues();
+        inputData();
         goGame();
     }
+
 
     //Método para iniciallizar variables
     private void inizialite() {
@@ -55,27 +65,242 @@ public class Juego extends AppCompatActivity implements View.OnClickListener{
 
     }
 
+    //Método para ingresar el escuchador a los botones
+    private void escucharBotones() {
+        btnColor1.setOnClickListener(this);
+        btnColor2.setOnClickListener(this);
+        btnColor3.setOnClickListener(this);
+        btnColor4.setOnClickListener(this);
+        btnPause.setOnClickListener(this);
+    }
+
     //Método para ingresar las listas que se van a necesitar
     private void inputList() {
+        listaPalabras = new ArrayList<>();
+        listaColores = new ArrayList<>();
         listaPalabras.add("AMARILLO");
+        listaColores.add(getColor(R.color.colorAmarillo));
+        listaPalabras.add("AZUL");
+        listaColores.add(getColor(R.color.colorAzul));
+        listaPalabras.add("ROJO");
+        listaColores.add(getColor(R.color.colorRojo));
+        listaPalabras.add("VERDE");
+        listaColores.add(getColor(R.color.colorVerde));
     }
 
     //Método para hacer aleatorio la palabra, colores y botones
     private void randomizar() {
+        listaColoresTmp = listaColores;
+        Collections.shuffle(listaColoresTmp);
+        palabraR = (int) (Math.random() * 4);
+        colorR = (int) (Math.random() * 4);
+        txtPalabra.setText(listaPalabras.get(palabraR));
+        txtPalabra.setTextColor(listaColores.get(colorR));
+
+        btnColor1.setColorFilter(listaColoresTmp.get(0));
+        btnColor2.setColorFilter(listaColoresTmp.get(1));
+        btnColor3.setColorFilter(listaColoresTmp.get(2));
+        btnColor4.setColorFilter(listaColoresTmp.get(3));
+
     }
 
     //Método para ingresar valores predeterminados
     private void inputValues() {
+        intentos = 3;
+        correctas =0;
+        incorrectas=0;
+        bandera=true;
+        bandera1=true;
+        ab=0;
+        pTiempo.setMax(30000);
+        pTiempo.setProgress(30000);
+    }
+
+    //Método para ingresar a los TextView la información cantidad de palabras, palabras correctas, intentos restantes
+    private void inputData() {
+        txtCantidad.setText(Integer.toString(cantidad));
+        txtCorrectas.setText(Integer.toString(correctas));
+        txtRestante.setText(Integer.toString(intentos));
     }
 
     //Método para iniciar el juego
     private void goGame() {
+        Thread thread = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                while (bandera){
+                    try {
+                        Thread.sleep(1);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                    runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            if (bandera1) {
+                                if (milisegundos[0] == 3000) {
+                                    Toast.makeText(Juego.this, "asd", Toast.LENGTH_SHORT).show();
+                                    milisegundos[0] = 0;
+                                    cantidad++;
+                                    intentos--;
+                                    incorrectas++;
+                                    randomizar();
+                                    inputData();
+                                    endGame();
+                                }
+                                milisegundos[0]++;
+                                milisegundos[1]--;
+
+
+                                pTiempo.setProgress(milisegundos[1]);
+                                if (milisegundos[1] == 0) {
+                                    milisegundos[1] = 30000;
+                                }
+
+                                endGame();
+                            }
+                        }
+                    });
+                }
+            }
+        });
+        thread.start();
+    }
+
+    //Método para finalizar el juego
+    private void endGame() {
+        if (ab==0 && intentos==0){
+            ab=1;
+            bandera=false;
+            bandera1=false;
+            Intent intent = new Intent(Juego.this,Resumen.class);
+            startActivity(intent);
+            finish();
+
+        }
     }
 
     @Override
     public void onClick(View v) {
         switch (v.getId()){
+            case R.id.btnColor1:
+                valorcito=1;
+                validar();
+                break;
 
+            case R.id.btnColor2:
+                valorcito=2;
+                validar();
+                break;
+
+            case R.id.btnColor3:
+                valorcito=3;
+                validar();
+                break;
+
+            case R.id.btnColor4:
+                valorcito=4;
+                validar();
+                break;
+
+            case R.id.btnPause:
+                pauseGame();
+                break;
         }
+    }
+
+
+
+    //Método para validar la jugada
+    private void validar() {
+        switch (valorcito){
+            case 1:
+                if (colorR==0){
+                    correctas++;
+                }else {
+                    incorrectas++;
+                    intentos--;
+                }
+                break;
+
+            case 2:
+                if (colorR==1){
+                    correctas++;
+                }else {
+                    incorrectas++;
+                    intentos--;
+                }
+                break;
+
+
+            case 3:
+                if (colorR==2){
+                    correctas++;
+                }else {
+                    incorrectas++;
+                    intentos--;
+                }
+                break;
+
+            case 4:
+                if (colorR==3){
+                    correctas++;
+                }else {
+                    incorrectas++;
+                    intentos--;
+                }
+                break;
+        }
+        cantidad++;
+        endGame();
+        randomizar();
+        inputData();
+        milisegundos[0]=0;
+
+    }
+
+
+    //Método para pausar el juego
+    private void pauseGame() {
+        pausar++;
+        if (pausar<=2) {
+            bandera1=false;
+            final Dialog dialog = new Dialog(this);
+            dialog.setContentView(R.layout.item_pause);
+            dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+            dialog.setCancelable(false);
+            Button btnContinuar = dialog.findViewById(R.id.btnContinuar);
+            btnContinuar.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    milisegundos[0]=0;
+                    bandera1=true;
+                    randomizar();
+                    dialog.cancel();
+                }
+            });
+            dialog.show();
+        }else {
+            Toast.makeText(this, "No puedes utilizar más pausas, el límite son dos", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        bandera=false;
+        bandera1=false;
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        bandera1=false;
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        bandera1=false;
     }
 }

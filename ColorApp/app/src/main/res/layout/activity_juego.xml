@@ -78,7 +78,7 @@
                 android:layout_weight="1"
                 android:gravity="center"
                 android:text="0"
-                android:textSize="48sp" />
+                android:textSize="36sp" />
 
             <TextView
                 android:layout_width="match_parent"
@@ -121,10 +121,11 @@
     <ImageButton
         android:id="@+id/btnColor1"
         android:layout_width="150dp"
-        android:layout_height="80dp"
+        android:layout_height="70dp"
         android:layout_marginStart="32dp"
         android:layout_marginTop="32dp"
         android:backgroundTint="@color/transparente"
+        android:scaleType="centerCrop"
         android:src="@mipmap/ic_launcher"
         android:text="Button"
         app:layout_constraintStart_toStartOf="parent"
@@ -133,10 +134,11 @@
     <ImageButton
         android:id="@+id/btnColor2"
         android:layout_width="150dp"
-        android:layout_height="80dp"
+        android:layout_height="70dp"
         android:layout_marginEnd="32dp"
         android:layout_marginTop="32dp"
         android:backgroundTint="@color/transparente"
+        android:scaleType="centerCrop"
         android:src="@mipmap/ic_launcher"
         android:text="Button"
         app:layout_constraintEnd_toEndOf="parent"
@@ -145,10 +147,11 @@
     <ImageButton
         android:id="@+id/btnColor3"
         android:layout_width="150dp"
-        android:layout_height="80dp"
+        android:layout_height="70dp"
         android:layout_marginStart="32dp"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="32dp"
         android:backgroundTint="@color/transparente"
+        android:scaleType="centerCrop"
         android:src="@mipmap/ic_launcher"
         android:text="Button"
         app:layout_constraintStart_toStartOf="parent"
@@ -159,8 +162,9 @@
         android:layout_width="150dp"
         android:layout_height="80dp"
         android:layout_marginEnd="32dp"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="32dp"
         android:backgroundTint="@color/transparente"
+        android:scaleType="centerCrop"
         android:src="@mipmap/ic_launcher"
         android:text="Button"
         app:layout_constraintEnd_toEndOf="parent"
