@@ -194,6 +194,10 @@ public class JuegoC extends AppCompatActivity implements View.OnClickListener{
     //Método para finalizar el juego
     private void endGame() {
         if (ab==0 && ((modo==1 && intentos==0) || (modo==2 && tiempo==0))){
+            btnColor1.setEnabled(false);
+            btnColor2.setEnabled(false);
+            btnColor3.setEnabled(false);
+            btnColor4.setEnabled(false);
             ab=1;
             bandera=false;
             bandera1=false;
