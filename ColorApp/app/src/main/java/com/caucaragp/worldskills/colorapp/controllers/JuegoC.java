@@ -2,6 +2,7 @@ package com.caucaragp.worldskills.colorapp.controllers;
 
 import android.app.Dialog;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.support.design.widget.FloatingActionButton;
@@ -20,7 +21,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-public class Juego extends AppCompatActivity implements View.OnClickListener{
+public class JuegoC extends AppCompatActivity implements View.OnClickListener{
     //Declaración de variables
     List<String> listaPalabras = new ArrayList<>();
     List<Integer> listaColores = new ArrayList<>();
@@ -32,14 +33,15 @@ public class Juego extends AppCompatActivity implements View.OnClickListener{
     ImageButton btnColor1, btnColor2, btnColor3, btnColor4;
     boolean bandera = true;
     boolean bandera1 = true;
-    int ab=0, valorcito, colorR, palabraR, pausar;
+    int ab=0, valorcito, colorR, palabraR, pausar, modo,tiempo,tiempoPalabra;
     public static int correctas, incorrectas;
     int cantidad, intentos;
     int [] milisegundos = {0,30000};
+    SharedPreferences juegoC;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_juego);
+        setContentView(R.layout.activity_juego_c);
         inizialite();
         escucharBotones();
         inputList();
@@ -48,7 +50,6 @@ public class Juego extends AppCompatActivity implements View.OnClickListener{
         inputData();
         goGame();
     }
-
 
     //Método para iniciallizar variables
     private void inizialite() {
@@ -106,21 +107,42 @@ public class Juego extends AppCompatActivity implements View.OnClickListener{
 
     //Método para ingresar valores predeterminados
     private void inputValues() {
-        intentos = 3;
+        juegoC = getSharedPreferences("juegoC",MODE_PRIVATE);
+        modo=juegoC.getInt("modo",1);
+        tiempoPalabra = juegoC.getInt("tiempoPalabra",3000);
+        if (modo==1) {
+            intentos = juegoC.getInt("intentos",3);
+        }else {
+            intentos=0;
+        }
+
         correctas =0;
         incorrectas=0;
         bandera=true;
         bandera1=true;
         ab=0;
-        pTiempo.setMax(30000);
-        pTiempo.setProgress(30000);
+        if (modo==1) {
+            pTiempo.setMax(30000);
+            pTiempo.setProgress(30000);
+        }else {
+            tiempo=juegoC.getInt("tiempo",30000);
+            pTiempo.setMax(tiempo);
+            pTiempo.setProgress(tiempo);
+        }
+
     }
 
     //Método para ingresar a los TextView la información cantidad de palabras, palabras correctas, intentos restantes
     private void inputData() {
         txtCantidad.setText(Integer.toString(cantidad));
         txtCorrectas.setText(Integer.toString(correctas));
-        txtRestante.setText(Integer.toString(intentos));
+        if (modo==1){
+            txtRestante.setText(Integer.toString(intentos));
+        }else {
+            TextView txtCambia = findViewById(R.id.txtCambia);
+            txtCambia.setText(getString(R.string.tiempofaltante));
+            txtRestante.setText(Integer.toString(tiempo));
+        }
     }
 
     //Método para iniciar el juego
@@ -138,7 +160,7 @@ public class Juego extends AppCompatActivity implements View.OnClickListener{
                         @Override
                         public void run() {
                             if (bandera1) {
-                                if (milisegundos[0] == 3000) {
+                                if (milisegundos[0] == tiempoPalabra) {
                                     milisegundos[0] = 0;
                                     cantidad++;
                                     intentos--;
@@ -149,11 +171,14 @@ public class Juego extends AppCompatActivity implements View.OnClickListener{
                                 }
                                 milisegundos[0]++;
                                 milisegundos[1]--;
-
-
                                 pTiempo.setProgress(milisegundos[1]);
-                                if (milisegundos[1] == 0) {
-                                    milisegundos[1] = 30000;
+                                if (modo==1) {
+
+                                    if (milisegundos[1] == 0) {
+                                        milisegundos[1] = 30000;
+                                    }
+                                }else {
+                                    txtRestante.setText(Integer.toString(milisegundos[1]));
                                 }
 
                                 endGame();
@@ -168,11 +193,11 @@ public class Juego extends AppCompatActivity implements View.OnClickListener{
 
     //Método para finalizar el juego
     private void endGame() {
-        if (ab==0 && intentos==0){
+        if (ab==0 && ((modo==1 && intentos==0) || (modo==2 && tiempo==0))){
             ab=1;
             bandera=false;
             bandera1=false;
-            Intent intent = new Intent(Juego.this,Resumen.class);
+            Intent intent = new Intent(JuegoC.this,Resumen.class);
             startActivity(intent);
             finish();
 
@@ -302,4 +327,5 @@ public class Juego extends AppCompatActivity implements View.OnClickListener{
         super.onPause();
         bandera1=false;
     }
+
 }
