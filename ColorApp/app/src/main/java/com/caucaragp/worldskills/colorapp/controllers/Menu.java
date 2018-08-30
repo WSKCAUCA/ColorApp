@@ -12,11 +12,12 @@ import com.caucaragp.worldskills.colorapp.R;
 public class Menu extends AppCompatActivity implements View.OnClickListener{
     //Declaraciónde variables
     Button btnJugar, btnPuntuacion, btnConfiguracion;
-    int guardar=0;
+    public static int guardar=0;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menu);
+        guardar=0;
         inizialite();
         escucharBotones();
     }

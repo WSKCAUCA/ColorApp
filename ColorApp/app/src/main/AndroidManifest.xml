@@ -9,19 +9,19 @@
         android:roundIcon="@drawable/iconoapp"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.NoActionBar">
-        <activity android:name=".controllers.Splash">
+        <activity android:name=".controllers.Splash" android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".controllers.Menu" />
-        <activity android:name=".controllers.Juego" />
-        <activity android:name=".controllers.Configuracion" />
-        <activity android:name=".controllers.Puntuacion" />
-        <activity android:name=".controllers.Resumen" />
-        <activity android:name=".controllers.JuegoC"></activity>
+        <activity android:name=".controllers.Menu" android:screenOrientation="portrait" />
+        <activity android:name=".controllers.Juego" android:screenOrientation="portrait" />
+        <activity android:name=".controllers.Configuracion" android:screenOrientation="portrait" />
+        <activity android:name=".controllers.Puntuacion" android:screenOrientation="portrait" />
+        <activity android:name=".controllers.Resumen" android:screenOrientation="portrait" />
+        <activity android:name=".controllers.JuegoC" android:screenOrientation="portrait" />
     </application>
 
 </manifest>

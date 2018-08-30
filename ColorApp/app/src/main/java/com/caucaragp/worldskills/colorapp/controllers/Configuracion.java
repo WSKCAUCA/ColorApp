@@ -61,11 +61,14 @@ public class Configuracion extends AppCompatActivity implements View.OnClickList
 
     //Método para escuchar cuando se hace click a u botón
     private void escucharBotones() {
+        rbtnIntentos.setOnClickListener(this);
+        rbtnTiempo.setOnClickListener(this);
+        btnJugarC.setOnClickListener(this);
     }
 
     @Override
     public void onClick(View v) {
-        switch (v.getId()){
+        switch (v.getId()) {
             case R.id.rbtnIntentos:
                 txtIntentos.setEnabled(true);
                 txtTiempo.setEnabled(false);
@@ -76,7 +79,9 @@ public class Configuracion extends AppCompatActivity implements View.OnClickList
                 break;
             case R.id.btnJugarC:
                 savePreferences();
-                Intent intent = new Intent(Configuracion.this,JuegoC.class);
+                Intent intent = new Intent(Configuracion.this, JuegoC.class);
+                startActivity(intent);
+                finish();
                 break;
         }
 
@@ -84,17 +89,18 @@ public class Configuracion extends AppCompatActivity implements View.OnClickList
 
     private void savePreferences() {
         SharedPreferences.Editor editor = juegoC.edit();
-        if (rbtnTiempo.isChecked()){
+        if (rbtnIntentos.isChecked()){
             editor.putInt("modo",1);
             int intentos = Integer.parseInt(txtIntentos.getText().toString());
             editor.putInt("intentos",intentos);
         }else {
             editor.putInt("modo",2);
-            int tiempo = Integer.parseInt(txtIntentos.getText().toString());
+            int tiempo = Integer.parseInt(txtTiempo.getText().toString());
             editor.putInt("tiempo",tiempo);
         }
         int tiempoPalabra = Integer.parseInt(txtTiempoPa.getText().toString());
         editor.putInt("tiempoPalabra",tiempoPalabra);
+        editor.commit();
 
     }
 }

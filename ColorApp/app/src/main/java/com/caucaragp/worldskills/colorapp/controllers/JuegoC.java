@@ -126,6 +126,7 @@ public class JuegoC extends AppCompatActivity implements View.OnClickListener{
             pTiempo.setProgress(30000);
         }else {
             tiempo=juegoC.getInt("tiempo",30000);
+            milisegundos[1]=tiempo;
             pTiempo.setMax(tiempo);
             pTiempo.setProgress(tiempo);
         }
@@ -193,7 +194,7 @@ public class JuegoC extends AppCompatActivity implements View.OnClickListener{
 
     //Método para finalizar el juego
     private void endGame() {
-        if (ab==0 && ((modo==1 && intentos==0) || (modo==2 && tiempo==0))){
+        if (ab==0 && ((modo==1 && intentos==0) || (modo==2 && milisegundos[1]==0))){
             btnColor1.setEnabled(false);
             btnColor2.setEnabled(false);
             btnColor3.setEnabled(false);
