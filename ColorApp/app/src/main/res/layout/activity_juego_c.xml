@@ -7,6 +7,20 @@
     android:background="@drawable/fondoapp"
     tools:context=".controllers.JuegoC">
 
+    <ImageView
+        android:id="@+id/imageView7"
+        android:layout_width="62dp"
+        android:layout_height="57dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:background="@drawable/splash"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnColor3" />
+
     <LinearLayout
         android:id="@+id/linearLayout"
         android:layout_width="match_parent"
@@ -30,6 +44,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
+                android:fontFamily="@font/carrois_gothic_sc"
                 android:gravity="center"
                 android:text="0"
                 android:textSize="36sp" />
@@ -38,6 +53,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="2"
+                android:fontFamily="@font/carrois_gothic_sc"
                 android:gravity="center"
                 android:text="@string/cantidaddepalabras" />
         </LinearLayout>
@@ -53,6 +69,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
+                android:fontFamily="@font/carrois_gothic_sc"
                 android:gravity="center"
                 android:text="0"
                 android:textSize="48sp" />
@@ -61,6 +78,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="2"
+                android:fontFamily="@font/carrois_gothic_sc"
                 android:gravity="center"
                 android:text="@string/correctas" />
         </LinearLayout>
@@ -77,6 +95,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
+                android:fontFamily="@font/carrois_gothic_sc"
                 android:gravity="center"
                 android:text="0"
                 android:textSize="36sp" />
@@ -86,6 +105,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="2"
+                android:fontFamily="@font/carrois_gothic_sc"
                 android:gravity="center"
                 android:text="@string/intentosfaltantes" />
         </LinearLayout>
@@ -100,6 +120,7 @@
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="16dp"
+        android:fontFamily="@font/carrois_gothic_sc"
         android:text="PALABRA"
         android:textAllCaps="true"
         android:textSize="42sp"

@@ -4,9 +4,9 @@
 
     <application
         android:allowBackup="true"
-        android:icon="@drawable/iconoapp"
+        android:icon="@drawable/iconoappx144"
         android:label="@string/app_name"
-        android:roundIcon="@drawable/iconoapp"
+        android:roundIcon="@drawable/iconoappx144"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.NoActionBar">
         <activity android:name=".controllers.Splash" android:screenOrientation="portrait">
@@ -22,6 +22,10 @@
         <activity android:name=".controllers.Puntuacion" android:screenOrientation="portrait" />
         <activity android:name=".controllers.Resumen" android:screenOrientation="portrait" />
         <activity android:name=".controllers.JuegoC" android:screenOrientation="portrait" />
+
+        <meta-data
+            android:name="preloaded_fonts"
+            android:resource="@array/preloaded_fonts" />
     </application>
 
 </manifest>

@@ -3,10 +3,10 @@
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="transparente">#00ffffff</color>
-    <color name="colorAccent">#6110E0</color>
+    <color name="colorAccent">#6110e0</color>
     <color name="colorAmarillo">#ffff00</color>
     <color name="colorAzul">#0000FF</color>
     <color name="colorRojo">#FF0000</color>
     <color name="colorVerde">#00FF00</color>
-    <color name="card">#02191E</color>
+    <color name="card">#963200e6</color>
 </resources>
