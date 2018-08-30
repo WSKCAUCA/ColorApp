@@ -14,7 +14,6 @@ import java.util.TimerTask;
 
 public class Splash extends AppCompatActivity {
 
-
     ImageView ImgSplash;
     ViewFlipper viewflipper;
     @Override
@@ -25,8 +24,6 @@ public class Splash extends AppCompatActivity {
         inicializar();
 
     }
-
-
     //Referenciamos los elementos que vamos a utilizar
     private void inicializar() {
 

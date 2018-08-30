@@ -87,6 +87,7 @@ public class Configuracion extends AppCompatActivity implements View.OnClickList
 
     }
 
+    //Método para guardar las preferecias del usuario
     private void savePreferences() {
         SharedPreferences.Editor editor = juegoC.edit();
         if (rbtnIntentos.isChecked()){

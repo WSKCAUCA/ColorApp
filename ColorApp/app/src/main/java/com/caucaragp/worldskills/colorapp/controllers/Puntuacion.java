@@ -27,8 +27,6 @@ public class Puntuacion extends AppCompatActivity implements View.OnClickListene
         ingresarPunutacion();
     }
 
-
-
     //Referenciamos los datos
     private void inicializar() {
         btnSalir = findViewById(R.id.btnSalir);

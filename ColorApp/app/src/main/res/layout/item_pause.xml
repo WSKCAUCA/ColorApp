@@ -7,11 +7,12 @@
 
     <android.support.v7.widget.CardView
         android:layout_width="360dp"
-        android:layout_height="200dp"
+        android:layout_height="180dp"
         android:layout_marginBottom="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="8dp"
+        app:cardBackgroundColor="@color/card"
         app:cardCornerRadius="10dp"
         app:cardElevation="10dp"
         app:contentPadding="4dp"
@@ -41,12 +42,12 @@
 
             <Button
                 android:id="@+id/btnContinuar"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="88dp"
+                android:layout_height="80dp"
                 android:layout_marginBottom="8dp"
                 android:layout_marginEnd="8dp"
                 android:layout_marginStart="8dp"
-                android:text="@string/continuar"
+                android:background="@drawable/botonrenaudar"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent" />
