@@ -7,4 +7,6 @@
     <string name="correctas">Palabras correctas</string>
     <string name="intentosfaltantes">Intentos faltantes</string>
     <string name="tiempofaltante">Tiempo faltante</string>
+    <string name="intentos">Intentos</string>
+    <string name="tiempo">Tiempos</string>
 </resources>
