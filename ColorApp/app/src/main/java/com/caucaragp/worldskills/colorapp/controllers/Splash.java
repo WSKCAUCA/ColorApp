@@ -1,8 +1,11 @@
 package com.caucaragp.worldskills.colorapp.controllers;
 
+import android.animation.Animator;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.widget.ImageView;
+import android.widget.ViewFlipper;
 
 import com.caucaragp.worldskills.colorapp.R;
 
@@ -11,11 +14,24 @@ import java.util.TimerTask;
 
 public class Splash extends AppCompatActivity {
 
+
+    ImageView ImgSplash;
+    ViewFlipper viewflipper;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
         inputTimer();
+        inicializar();
+
+    }
+
+
+    //Referenciamos los elementos que vamos a utilizar
+    private void inicializar() {
+
+        ImgSplash = findViewById(R.id.ImgSplash);
+        viewflipper = findViewById(R.id.viewflipper);
     }
 
     //Método para implementar el splash a la aplicación
