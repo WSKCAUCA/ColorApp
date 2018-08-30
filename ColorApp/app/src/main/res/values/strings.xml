@@ -9,4 +9,6 @@
     <string name="tiempofaltante">Tiempo faltante</string>
     <string name="pausa">Pausa</string>
     <string name="continuar">Continuar</string>
+    <string name="intentos">Intentos</string>
+    <string name="tiempo">Tiempos</string>
 </resources>
